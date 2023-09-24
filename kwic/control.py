@@ -9,7 +9,7 @@ class Input(object):
 
     def set_input(self):
         print("Setting input...")
-        self._storage.set_char()
+        self._storage.set_char(1, 1, 1, 'A')
 
 class CircularShifter(object):
     """Placeholder for the Circular Shift module."""
@@ -18,8 +18,8 @@ class CircularShifter(object):
 
     def setup(self):
         print("Setting up circular shifter...")
-        self._storage.char()
-        self._storage.word()
+        self._storage.char(1, 1, 1)
+        self._storage.word(1)
 
     def CS_Char(self):
         print("Getting CS char...")
