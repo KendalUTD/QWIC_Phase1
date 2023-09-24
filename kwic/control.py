@@ -1,4 +1,6 @@
-"""This module handles the master control component of kwic."""
+"""This module represents the master control component of the kwic system."""
+
+from kwic.storage import LineStorage
 
 class Input(object):
     """Placeholder for the Input module."""
@@ -8,17 +10,6 @@ class Input(object):
     def set_input(self):
         print("Setting input...")
         self._storage.set_char()
-
-class LineStorage(object):
-    """Placeholder for the Line Storage module."""
-    def set_char(self):
-        print("Setting char...")
-
-    def char(self):
-        print("Getting char...")
-
-    def word(self):
-        print("Getting word...")
 
 class CircularShifter(object):
     """Placeholder for the Circular Shift module."""
