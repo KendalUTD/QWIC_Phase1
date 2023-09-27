@@ -1,6 +1,7 @@
 """This module represents the master control component of the kwic system."""
 
 from kwic.storage import LineStorage
+from kwic.circularShift import CircularShift
 
 class Input(object):
     """Placeholder for the Input module."""
@@ -11,21 +12,21 @@ class Input(object):
         print("Setting input...")
         self._storage.set_char(1, 1, 1, 'A')
 
-class CircularShifter(object):
-    """Placeholder for the Circular Shift module."""
-    def __init__(self, storage):
-        self._storage = storage
+# class CircularShifter(object):
+#     """Placeholder for the Circular Shift module."""
+#     def __init__(self, storage):
+#         self._storage = storage
 
-    def setup(self):
-        print("Setting up circular shifter...")
-        self._storage.char(1, 1, 1)
-        self._storage.word(1)
+#     def setup(self):
+#         print("Setting up circular shifter...")
+#         self._storage.char(1, 1, 1)
+#         self._storage.word(1)
 
-    def CS_Char(self):
-        print("Getting CS char...")
+#     def CS_Char(self):
+#         print("Getting CS char...")
 
-    def CS_Word(self):
-        print("Getting CS word...")
+#     def CS_Word(self):
+#         print("Getting CS word...")
 
 class AlphabeticShifter(object):
     """Placeholder for the Alphabetics shift module."""
@@ -55,7 +56,7 @@ class Controller(object):
         # Create single instances for each stage, passing a reference to its neighboring stage
         self._storage = LineStorage()
         self._input = Input(self._storage)
-        self._circular_shifter = CircularShifter(self._storage)
+        self._circular_shifter = CircularShift(self._storage)
         self._alpha_shifter = AlphabeticShifter(self._circular_shifter)
         self._output = Output(self._alpha_shifter)
 
