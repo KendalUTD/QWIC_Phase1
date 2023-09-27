@@ -10,15 +10,23 @@ class Input(object):
     def __init__(self, storage):
         self._storage = storage
 
+    def __readFile(filename):
+        try:
+            with open(filename, "r") as f:
+                content = f.read()
+                f.close()
+            return content
+        except FileNotFoundError:
+            raise Exception('Function not yet implemented!')
+
     # Input: set_input
     # Stores the input of the lines into storage
+    # Assumes the first Character in a line is not " "
     def set_input(self, text_input):
+        text = self.__readFile(text_input)
         print("Setting input...")
-        lines = text_input.split("$")
+        lines = text.split("$")
         for i, line in enumerate(lines):
-            words = line.split()
-            for j, word in enumerate(words):
-                for k, char in enumerate(word):
-                    # This function calls the set_char component in the Line
-                    # Storage componenet
-                    self._storage.set_char(i + 1, j + 1, k + 1, str(char))
+            # This function calls the set_char component in the Line
+            # Storage componenet
+            self._storage.set_line(line)
