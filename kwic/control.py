@@ -1,20 +1,8 @@
 """This module represents the master control component of the kwic system."""
 
-from input import Input
-
+from kwic.input import Input
 from kwic.storage import LineStorage
 from kwic.circularShift import CircularShift
-
-# See input.py for input component
-
-# class Input(object):
-#     """Placeholder for the Input module."""
-#     def __init__(self, storage):
-#         self._storage = storage
-
-#     def set_input(self):
-#         print("Setting input...")
-#         self._storage.set_char(1, 1, 1, 'A')
 
 class AlphabeticShifter(object):
     """Placeholder for the Alphabetics shift module."""
