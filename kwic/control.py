@@ -12,22 +12,6 @@ class Input(object):
         print("Setting input...")
         self._storage.set_char(1, 1, 1, 'A')
 
-# class CircularShifter(object):
-#     """Placeholder for the Circular Shift module."""
-#     def __init__(self, storage):
-#         self._storage = storage
-
-#     def setup(self):
-#         print("Setting up circular shifter...")
-#         self._storage.char(1, 1, 1)
-#         self._storage.word(1)
-
-#     def CS_Char(self):
-#         print("Getting CS char...")
-
-#     def CS_Word(self):
-#         print("Getting CS word...")
-
 class AlphabeticShifter(object):
     """Placeholder for the Alphabetics shift module."""
     def __init__(self, circular_shifter):

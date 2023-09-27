@@ -1,7 +1,6 @@
 """This module represents the line storage component of the kwic system."""
 
 class LineStorage(object):
-    """Placeholder for the Line Storage module."""
     def __init__(self):
         self._lines = dict()
 
