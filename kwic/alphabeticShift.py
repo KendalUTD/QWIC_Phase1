@@ -1,9 +1,11 @@
+"""This module represents the alphabetic shift component of the kwic system."""
+
 class AlphabeticShift:
     def __init__(self, circular_shifter):
         self.circular_shifter = circular_shifter
         self.sorted_shifted_lines = []
 
-    def alpha_sort(self):
+    def alpha(self):
         '''Sorts the circularly shifted lines alphabetically using merge sort'''
         self.sorted_shifted_lines = self.merge_sort(self.circular_shifter.get_shifted_lines())
 

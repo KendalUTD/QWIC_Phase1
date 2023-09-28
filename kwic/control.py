@@ -3,17 +3,7 @@
 from kwic.input import Input
 from kwic.storage import LineStorage
 from kwic.circularShift import CircularShift
-
-class AlphabeticShifter(object):
-    """Placeholder for the Alphabetics shift module."""
-    def __init__(self, circular_shifter):
-        self._circular_shifter = circular_shifter
-
-    def alpha(self):
-        print("Alphabetizing...")
-
-    def ith_line(self):
-        print("Getting ith line...")
+from kwic.alphabeticShift import AlphabeticShift
 
 class Output(object):
     """Placeholder for the Output module."""
@@ -22,7 +12,8 @@ class Output(object):
 
     def get_output(self):
         print("Getting output...")
-        self._shifter.ith_line()
+        for line in self._shifter.get_sorted_lines():
+            print(line)
 
 class Controller(object):
     """Orchestrates the KWIC processing."""
@@ -31,7 +22,7 @@ class Controller(object):
         self._storage = LineStorage()
         self._input = Input(self._storage)
         self._circular_shifter = CircularShift(self._storage)
-        self._alpha_shifter = AlphabeticShifter(self._circular_shifter)
+        self._alpha_shifter = AlphabeticShift(self._circular_shifter)
         self._output = Output(self._alpha_shifter)
 
     def run(self):
