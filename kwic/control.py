@@ -11,8 +11,6 @@ class AlphabeticShifter(object):
 
     def alpha(self):
         print("Alphabetizing...")
-        self._circular_shifter.CS_Char()
-        self._circular_shifter.CS_Word()
 
     def ith_line(self):
         print("Getting ith line...")

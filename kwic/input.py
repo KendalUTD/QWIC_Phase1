@@ -15,10 +15,5 @@ class Input(object):
     def set_input(self, text_input):
         print("Setting input...")
         lines = text_input.split("$")
-        for i, line in enumerate(lines):
-            words = line.split()
-            for j, word in enumerate(words):
-                for k, char in enumerate(word):
-                    # This function calls the set_char component in the Line
-                    # Storage componenet
-                    self._storage.set_char(i + 1, j + 1, k + 1, str(char))
+        for i, line in enumerate(lines, 1):
+            self._storage.set_line(i, line)

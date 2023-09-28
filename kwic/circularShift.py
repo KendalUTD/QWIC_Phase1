@@ -1,21 +1,28 @@
-
+"""This module represents the Circular Shift component of the kwic system."""
 
 class CircularShift:
 
+    storage = None
     lines = []
     circular_shifted_lines = []
 
     def __init__(self, storage):
         """this acts as the setup method in the diagram"""
+        self.storage = storage
 
-        self.setup(storage)
-        self.__circular_shift()
-    
-
-    def setup(self, storage):
+    def setup(self):
         '''get the lines from storage'''
 
-        self.lines = storage.get_lines()
+        self.lines = []
+
+        x = 1
+        line = self.storage.get_line(x)
+        while line is not None:
+            self.lines.append(line)
+            line = self.storage.get_line(x)
+            x += 1
+
+        self.__circular_shift()
 
 
     def __circular_shift(self):
