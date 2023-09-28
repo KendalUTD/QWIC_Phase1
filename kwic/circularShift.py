@@ -19,8 +19,8 @@ class CircularShift:
         line = self.storage.get_line(x)
         while line is not None:
             self.lines.append(line)
-            line = self.storage.get_line(x)
             x += 1
+            line = self.storage.get_line(x)
 
         self.__circular_shift()
 

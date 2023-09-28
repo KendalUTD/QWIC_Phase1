@@ -12,6 +12,7 @@ class Output(object):
 
     def get_output(self):
         print("Getting output...")
+        print("\n")
         for line in self._shifter.get_sorted_lines():
             print(line)
 
@@ -27,7 +28,7 @@ class Controller(object):
 
     def run(self):
         """Entry point into KWIC processing."""
-        self._input.set_input("Something from the input mechanism$Something Something")
+        self._input.set_input("Something from the input mechanism$Here is some more")
         self._circular_shifter.setup()
         self._alpha_shifter.alpha()
         self._output.get_output()
