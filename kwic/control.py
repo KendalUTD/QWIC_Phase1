@@ -4,17 +4,8 @@ from kwic.input import Input
 from kwic.storage import LineStorage
 from kwic.circularShift import CircularShift
 from kwic.alphabeticShift import AlphabeticShift
+from kwic.output import Output
 
-class Output(object):
-    """Placeholder for the Output module."""
-    def __init__(self, shifter):
-        self._shifter = shifter
-
-    def get_output(self):
-        print("Getting output...")
-        print("\n")
-        for line in self._shifter.get_sorted_lines():
-            print(line)
 
 class Controller(object):
     """Orchestrates the KWIC processing."""
