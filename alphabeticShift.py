@@ -1,11 +1,16 @@
 class AlphabeticShift:
-    def __init__(self, circular_shifter):
-        self.circular_shifter = circular_shifter
+    def init(self, circular_shifter):
+        self.setup(circular_shifter)
         self.sorted_shifted_lines = []
 
+    def setup(self, circular_shifter):
+        '''get the circularly shifted lines'''
+
+        self.circular_shifted_lines = storage.get_shifted_lines()
+
     def alpha_sort(self):
-        '''Sorts the circularly shifted lines alphabetically using merge sort'''
-        self.sorted_shifted_lines = self.merge_sort(self.circular_shifter.get_shifted_lines())
+        '''Sorts the c by ircularly shifted lines alphabetically using merge sort'''
+        self.sorted_shifted_lines = self.merge_sort(self.circular_shifted_lines)
 
     def merge_sort(self, lines):
         if len(lines) <= 1:
