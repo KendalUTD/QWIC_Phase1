@@ -1,10 +1,10 @@
 """This module represents the master control component of the kwic system."""
 
-from kwic.input import Input
-from kwic.storage import LineStorage
-from kwic.circularShift import CircularShift
-from kwic.alphabeticShift import AlphabeticShift
-from kwic.output import Output
+from input import Input
+from storage import LineStorage
+from circularShift import CircularShift
+from alphabeticShift import AlphabeticShift
+from output import Output
 
 
 class Controller(object):
@@ -15,11 +15,14 @@ class Controller(object):
         self._input = Input(self._storage)
         self._circular_shifter = CircularShift(self._storage)
         self._alpha_shifter = AlphabeticShift(self._circular_shifter)
-        self._output = Output(self._alpha_shifter)
+        self._output = Output(self._circular_shifter, self._alpha_shifter)
 
     def run(self):
         """Entry point into KWIC processing."""
-        self._input.set_input("Something from the input mechanism$Here is some more")
+        # text_input = "Something from the input mechanism$Here is some more lines$Did you know that cashews come from a fruit$Spider-Man does whatever he can$Software Engineering is kinda fun maybe I don't know"
+        text_input = input("Enter lines (separate lines with $): ")
+        print("Text Input:\n" + text_input)
+        self._input.set_input(text_input)
         self._circular_shifter.setup()
-        self._alpha_shifter.alpha()
+        self._alpha_shifter.setup()
         self._output.get_output()
