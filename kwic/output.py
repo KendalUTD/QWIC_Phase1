@@ -48,12 +48,12 @@ class Output(object):
 
     def get_output(self):
         print("\nGetting CS Lines\n")
-        for line in self.circle_shifter.get_shifted_lines():
+        for line in self.circle_shifter.get_lines():
             self._print_line(line)
         time.sleep(5)
         print("\nGetting output...")
         print("\n")
-        for line in self.alpha_shifter.get_sorted_lines():
+        for line in self.alpha_shifter.get_lines():
             if self._has_noise_word(line):
                 continue
             self._print_line(line)

@@ -1,7 +1,5 @@
 """This module represents the input component of the kwic system."""
 
-from storage import LineStorage
-
 class Input(object):
     """Kendal's code for the Input module."""
 

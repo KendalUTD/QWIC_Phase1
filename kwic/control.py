@@ -1,10 +1,10 @@
 """This module represents the master control component of the kwic system."""
 
-from input import Input
-from storage import LineStorage
-from circularShift import CircularShift
-from alphabeticShift import AlphabeticShift
-from output import Output
+from kwic.input import Input
+from kwic.storage import LineStorage
+from kwic.circularShift import CircularShift
+from kwic.alphabeticShift import AlphabeticShift
+from kwic.output import Output
 
 
 class Controller(object):

@@ -38,5 +38,5 @@ class CircularShift:
                 self.circular_shifted_lines.append(shifted_line)
 
 
-    def get_shifted_lines(self):
+    def get_lines(self):
         return self.circular_shifted_lines

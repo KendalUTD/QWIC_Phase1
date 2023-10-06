@@ -1,14 +1,12 @@
 """This module represents the alphabetic shift component of the kwic system."""
 
-from circularShift import CircularShift
-
 class AlphabeticShift:
     def __init__(self, circular_shifter):
         self.circular_shifter = circular_shifter
         self.sorted_shifted_lines = []
 
     def setup(self):
-        self.csLines = self.circular_shifter.get_shifted_lines()
+        self.csLines = self.circular_shifter.get_lines()
         self.__alpha()
 
     def __alpha(self):
@@ -44,5 +42,5 @@ class AlphabeticShift:
         sorted_lines.extend(right_half[right_index:])
         return sorted_lines
 
-    def get_sorted_lines(self):
+    def get_lines(self):
         return self.sorted_shifted_lines
