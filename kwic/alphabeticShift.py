@@ -10,37 +10,70 @@ class AlphabeticShift:
         self.__alpha()
 
     def __alpha(self):
-        '''Sorts the circularly shifted lines alphabetically using merge sort'''
-        self.sorted_shifted_lines = self.__merge_sort(self.csLines)
+        '''get the sorted list of shifted lines from db and merge sort them with new lines'''
+        db_lines = get_from_dB()
+        self.sorted_shifted_lines = self.__merge_sort(self.csLines, db_lines)
 
-    def __merge_sort(self, lines):
-        if len(lines) <= 1:
-            return lines
+    def get_from_dB(self):
+        '''get the sorted list of shifted lines from db'''
+        #TODO
+        pass
 
-        # Split the list in half
-        mid = len(lines) // 2
-        left_half = lines[:mid]
-        right_half = lines[mid:]
+    def _sort_lines(self, lines):
+        """Sorts the lines alphabetically."""
+        lines.sort(key=lambda x: x.lower())
+        return lines
 
-        # Recursively merge sort both halves
-        left_half = self.__merge_sort(left_half)
-        right_half = self.__merge_sort(right_half)
+    # def __merge_sort(self, lines):
+    #     if len(lines) <= 1:
+    #         return lines
 
-        # Merge the sorted halves
-        sorted_lines = []
-        left_index, right_index = 0, 0
+    #     # Split the list in half
+    #     mid = len(lines) // 2
+    #     left_half = lines[:mid]
+    #     right_half = lines[mid:]
 
-        while left_index < len(left_half) and right_index < len(right_half):
-            if left_half[left_index].lower() < right_half[right_index].lower():
-                sorted_lines.append(left_half[left_index])
-                left_index += 1
-            else:
-                sorted_lines.append(right_half[right_index])
-                right_index += 1
+    #     # Recursively merge sort both halves
+    #     left_half = self.__merge_sort(left_half)
+    #     right_half = self.__merge_sort(right_half)
 
-        sorted_lines.extend(left_half[left_index:])
-        sorted_lines.extend(right_half[right_index:])
-        return sorted_lines
+    #     # Merge the sorted halves
+    #     sorted_lines = []
+    #     left_index, right_index = 0, 0
+
+    #     while left_index < len(left_half) and right_index < len(right_half):
+    #         if left_half[left_index].lower() < right_half[right_index].lower():
+    #             sorted_lines.append(left_half[left_index])
+    #             left_index += 1
+    #         else:
+    #             sorted_lines.append(right_half[right_index])
+    #             right_index += 1
+
+    #     sorted_lines.extend(left_half[left_index:])
+    #     sorted_lines.extend(right_half[right_index:])
+    #     return sorted_lines
 
     def get_lines(self):
         return self.sorted_shifted_lines
+
+
+    def __merge_sort(self, linesA, linesB=None):
+        '''merge sort 2 sorted lists and case sensitive'''
+        if linesB == None:
+            linesB = []
+        sorted_lines = []
+        i = 0
+        j = 0
+        while i < len(linesA) and j < len(linesB):
+            if linesA[i] < linesB[j]:
+                sorted_lines.append(linesA[i])
+                i += 1
+            else:
+                sorted_lines.append(linesB[j])
+                j += 1
+        sorted_lines += linesA[i:]
+        sorted_lines += linesB[j:]
+        return sorted_lines
+        
+        
+
