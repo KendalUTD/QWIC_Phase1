@@ -10,8 +10,10 @@ class Input(object):
 
     # Input: set_input
     # Stores the input of the lines into storage
-    def set_input(self, text_input):
+    def set_input(self, file_address):
         print("Setting input...")
+        with open(file_address, 'r') as f:
+            text_input = f.read()
         lines = text_input.split("$")
         for i, line in enumerate(lines, 1):
             self._storage.set_line(i, line)

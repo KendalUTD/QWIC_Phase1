@@ -20,9 +20,9 @@ class Controller(object):
     def run(self):
         """Entry point into KWIC processing."""
         # text_input = "Something from the input mechanism$Here is some more lines$Did you know that cashews come from a fruit$Spider-Man does whatever he can$Software Engineering is kinda fun maybe I don't know"
-        text_input = input("Enter lines (separate lines with $): ")
-        print("Text Input:\n" + text_input)
-        self._input.set_input(text_input)
+        # text_input = input("Enter lines (separate lines with $): ")
+        # print("Text Input:\n" + text_input)
+        self._input.set_input(file_address="input.txt")
         self._circular_shifter.setup()
         self._alpha_shifter.setup()
         self._output.get_output()
