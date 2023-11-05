@@ -57,3 +57,7 @@ class Output(object):
             if self._has_noise_word(line):
                 continue
             self._print_line(line)
+
+    def _save_to_dB(self):
+        '''save the sorted list of shifted lines to db'''
+        #TODO

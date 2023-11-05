@@ -20,3 +20,5 @@ class Input(object):
         lines = text_input.split("$")
         for i, line in enumerate(lines, 1):
             self._storage.set_line(i, line)
+
+#TODO: add a feature to read files from a folder rather than just one file
