@@ -14,10 +14,14 @@ class AlphabeticShift:
         db_lines = get_from_dB()
         self.sorted_shifted_lines = self.__merge_sort(self.csLines, db_lines)
 
-    def get_from_dB(self):
+    def _get_from_dB(self):
         '''get the sorted list of shifted lines from db'''
         #TODO
         pass
+
+    def _save_to_dB(self):
+        '''save the sorted list of shifted lines to db'''
+        #TODO
 
     def _sort_lines(self, lines):
         """Sorts the lines alphabetically."""

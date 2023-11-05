@@ -10,6 +10,14 @@ class LineStorage(object):
             return 
         self._lines[l] = d
 
+    def set_url(self, url):
+        """Sets the url of the text file."""
+        self._url = url
+
+    def get_url(self):
+        """Returns the url of the text file."""
+        return self._url
+
     def get_line(self, l):
         """Returns l-th line. Returns None if out-of-range."""
         try:
