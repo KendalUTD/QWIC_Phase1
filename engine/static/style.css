@@ -1,0 +1,56 @@
+html, body {
+    text-align: center;
+}
+
+.container {
+    margin-top: 200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.logo {
+    color: red;
+    font-style: italic;
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.searchbar {
+    width: 25%;
+}
+
+.container_search {
+    display: flex;
+    border-color: blue;
+    border-style: dashed;
+    border-width: 10px;
+    text-align: center;
+
+    align-items: center;
+    justify-content: left;
+}
+
+.logo_search {
+    color: red;
+    font-style: italic;
+    float: left;
+    display: block;
+    margin-right: 10px;
+    border-color: red;
+    border-style: dashed;
+    border-width: 10px;
+}
+
+.searchbox_search {
+    text-align: left;
+    border-color: red;
+    border-style: dashed;
+    border-width: 10px;
+    display: block;
+    margin-top: center;
+}
+
+input {
+    height: 20px;
+}
