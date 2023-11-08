@@ -2,13 +2,13 @@ html, body {
     text-align: center;
 }
 
-.container {
+#container {
     margin-top: 200px;
     margin-right: auto;
     margin-left: auto;
 }
 
-.logo {
+#logo {
     color: red;
     font-style: italic;
     font-size: xx-large;
@@ -16,39 +16,43 @@ html, body {
     margin-bottom: 0px;
 }
 
-.searchbar {
+#searchbar {
     width: 25%;
 }
 
-.container_search {
+#container_search {
     display: flex;
-    border-color: blue;
-    border-style: dashed;
-    border-width: 10px;
     text-align: center;
 
     align-items: center;
     justify-content: left;
 }
 
-.logo_search {
+#logo_search {
     color: red;
     font-style: italic;
+    font-size: small;
     float: left;
     display: block;
-    margin-right: 10px;
-    border-color: red;
-    border-style: dashed;
-    border-width: 10px;
+    margin-right: 25px;
 }
 
-.searchbox_search {
+#searchbox_search {
     text-align: left;
-    border-color: red;
-    border-style: dashed;
-    border-width: 10px;
     display: block;
     margin-top: center;
+    width: 25%;
+}
+
+.result {
+    text-align: left;
+    display: block;
+    margin-top: center;
+    width: 25%;
+}
+
+#search_header {
+    text-align: left;
 }
 
 input {

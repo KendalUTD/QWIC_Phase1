@@ -1,4 +1,8 @@
 
 
 def submit_request(query):
-    return list()
+    return [
+        "www.facebook.com",
+        "www.google.com",
+        "www.instagram.com"
+    ]

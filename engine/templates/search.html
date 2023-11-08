@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
-    <div class="container_search">
-        <div class="logo_search">
+    <div id="container_search">
+        <div id="logo_search">
             <h1>Thunder</h1>
         </div>
-        <input class="searchbox_search" name="title" type="text" value="Something">
+         <input id="searchbox_search" name="title" type="text" value="{{ query }}" readonly>
+    </div>
+    <hr>
+    <h2 id="search_header">Search results...</h2>
+    <div id="results_container">
+        {% for res in results %}
+        <a href="{{ res }}" class="result">{{ res }}</a>
+        <br>
+        {% endfor %}
     </div>
 </body>
 </html>
