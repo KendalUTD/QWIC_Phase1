@@ -23,7 +23,6 @@ html, body {
 #container_search {
     display: flex;
     text-align: center;
-
     align-items: center;
     justify-content: left;
 }
@@ -53,6 +52,18 @@ html, body {
 
 #search_header {
     text-align: left;
+}
+
+#form_options {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+#sort_option_container {
+    margin-right: 30px;
 }
 
 input {

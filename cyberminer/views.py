@@ -23,12 +23,14 @@ def search():
     """
     # The search form should have submitted GET request passing query parameter
     query = request.args.get("query", None)
+    sort_method = request.args.get("sort_method", models.SortMethod.ALPHABETICALLY)
+    nperpage = request.args.get("nperpage", 100)
 
     if query is None:
         # We've done something terribly wrong
         abort(500)
 
-    results = models.submit_request(query)
+    results = models.submit_request(query, sort_method)
     if results is not None and type(results) == list:
         return render_template("search.html", engine_name=ENGINE_NAME, results=results, query=query)
     else:

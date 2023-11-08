@@ -11,9 +11,31 @@
         <div id="logo">
              <h1>{{ engine_name }}<br/></h1>
         </div>
-        <form action="search" method="GET">
-            <input id="searchbar" type="text" placeholder="Type something to search..." name="query">
-            <input type="submit" value="Search" />
+        <form id="form" action="search" method="GET">
+            <div id="form_container">
+                <input name="query" id="searchbar" type="text" placeholder="Type something to search...">
+                <input type="submit" value="Search" />
+            </div>
+            <br>
+            <div id="form_options">
+                <div id="sort_option_container">
+                    <label for="sort_method">Sort by:</label>
+                    <select name="sort_method" id="sort_select_option">
+                        <option value="alphabetically">alphabetically</option>
+                        <option value="fixme">fixme</option>
+                        <option value="fixme">fixme</option>
+                    </select>
+                </div>
+                <div id="nresults_option_container">
+                    <label for="nperpage">Results per page:</label>
+                    <select name="nperpage" id="nresults_select_option">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
         </form>
     </div>
 </body>
