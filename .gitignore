@@ -1,6 +1,6 @@
 venv
 **/__pycache__
 *.pyc
-kwic.egg-info
+*.egg-info
 tests/htmlcov
 tests/.coverage

@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder Search Engine</title>
+    <title>{{ engine_name }} Search Engine</title>
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
     <div id="container_search">
         <div id="logo_search">
-            <h1>Thunder</h1>
+            <h1>{{ engine_name }}</h1>
         </div>
-         <input id="searchbox_search" name="title" type="text" value="{{ query }}" readonly>
+        <input id="searchbox_search" name="title" type="text" value="{{ query }}" readonly>
     </div>
     <hr>
     <h2 id="search_header">Search results...</h2>
     <div id="results_container">
         {% for res in results %}
-        <a href="{{ res }}" class="result">{{ res }}</a>
+        <a href="{{ res }}" class="result" target="_blank">{{ res }}</a>
         <br>
         {% endfor %}
     </div>

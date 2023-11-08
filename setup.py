@@ -2,14 +2,14 @@
 
 from setuptools import setup
 
-setup(name="kwic",
+setup(name="cyberminer",
     version="0.1",
-    description="A simple search engine based on KWIC.",
+    description="A simple web search engine based on KWIC.",
     author="Abdul Ghulam, Ch Divyesh venkata rama kumar, Hunter Sullivan, Kendal Wiggins, Mohammad Rafieian",
-    packages=["engine", "kwic"],
+    packages=["cyberminer", "kwic"],
     entry_points={
         "console_scripts": [
-            "thunder = engine:main",
+            "cyberminer = cyberminer:main",
         ],
     }
 )
