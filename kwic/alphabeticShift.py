@@ -13,7 +13,7 @@ class AlphabeticShift:
 
     def __alpha(self):
         '''get the sorted list of shifted lines from db and merge sort them with new lines'''
-        db_lines = get_from_dB()  # [{url: [lines]}]
+        db_lines = self.get_from_dB()  # [{url: [lines]}]
         self.csLines = self._sort_lines(self.csLines)   
         self.page_lines = self._create_dict(self.csLines)
         self.sorted_shifted_lines = self.__merge_sort(self.page_lines, db_lines)
