@@ -1,8 +1,14 @@
 """This module represents the alphabetic shift component of the kwic system."""
 
+import sqlite3
+
+conn = sqlite3.connect('kwic.db')
+cursor = conn.cursor()
+
 class AlphabeticShift:
-    def __init__(self, circular_shifter):
+    def __init__(self, circular_shifter, storage):
         self.circular_shifter = circular_shifter
+        self.storage = storage
         self.sorted_shifted_lines = []
 
     def setup(self):
@@ -13,65 +19,38 @@ class AlphabeticShift:
 
     def __alpha(self):
         '''get the sorted list of shifted lines from db and merge sort them with new lines'''
-        db_lines = self.get_from_dB()  # [{url: [lines]}]
+        db_lines = self._get_from_dB()  # [(url, line)]
         self.csLines = self._sort_lines(self.csLines)   
-        self.page_lines = self._create_dict(self.csLines)
+        self.page_lines = self._create_tuple(self.csLines)
         self.sorted_shifted_lines = self.__merge_sort(self.page_lines, db_lines)
 
     def _get_from_dB(self):
         '''get the sorted list of shifted lines from db   ==>  {url: [lines]}'''
-        #TODO
-        pass
-
+        
+        cursor.execute("SELECT * FROM kwic")
+        db_lines = cursor.fetchall()
+        return db_lines
+        
 
     def _sort_lines(self, lines):
         """Sorts the alphabetically."""
         lines.sort()
         return lines
     
-    def _create_dict(self, lines):
+    def _create_tuple(self, lines):
         '''create a dictionary with sorted lines as keys and lines as values'''
-        dict_lines = []
+        tuple_lines = []
         for line in lines:
-            dict_lines.append({self.url: line})
-        return dict_lines
+            tuple_lines.append((self.url, line))
+        return tuple_lines
         
-
-    # def __merge_sort(self, lines):
-    #     if len(lines) <= 1:
-    #         return lines
-
-    #     # Split the list in half
-    #     mid = len(lines) // 2
-    #     left_half = lines[:mid]
-    #     right_half = lines[mid:]
-
-    #     # Recursively merge sort both halves
-    #     left_half = self.__merge_sort(left_half)
-    #     right_half = self.__merge_sort(right_half)
-
-    #     # Merge the sorted halves
-    #     sorted_lines = []
-    #     left_index, right_index = 0, 0
-
-    #     while left_index < len(left_half) and right_index < len(right_half):
-    #         if left_half[left_index].lower() < right_half[right_index].lower():
-    #             sorted_lines.append(left_half[left_index])
-    #             left_index += 1
-    #         else:
-    #             sorted_lines.append(right_half[right_index])
-    #             right_index += 1
-
-    #     sorted_lines.extend(left_half[left_index:])
-    #     sorted_lines.extend(right_half[right_index:])
-    #     return sorted_lines
 
     def get_lines(self):
         return self.sorted_shifted_lines
 
 
     def __merge_sort(self, linesA, linesB=None):
-        '''merge sort 2 dictionary with sorted lists and case sensitive ==> [{url: [lines]}]'''
+        '''merge sort 2 tuples with sorted lists and case sensitive ==> [(url, line)]'''
 
         if linesB == None:
             linesB = []
@@ -80,8 +59,8 @@ class AlphabeticShift:
         j = 0
         while i < len(linesA) and j < len(linesB):
 
-            lines_listA = list(linesA[i].values())[0]
-            lines_listB = list(linesB[j].values())[0]
+            lines_listA = linesA[i][1]
+            lines_listB = linesB[j][1]
 
             if lines_listA < lines_listB:
                 sorted_lines.append(linesA[i])

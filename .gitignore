@@ -4,3 +4,5 @@ venv
 kwic.egg-info
 tests/htmlcov
 tests/.coverage
+*.db
+*.txt
