@@ -1,6 +1,6 @@
-"""Contains all routes defintions, renders HTML templates, and delegates queries to other components."""
+"""Contains all route defintions, renders HTML templates, and delegates queries to other components."""
 
-from flask import render_template, request, abort
+from flask import render_template, request, abort, jsonify
 
 # Flask requires this import after calling app.run()
 from cyberminer import app
@@ -30,8 +30,28 @@ def search():
         # We've done something terribly wrong
         abort(500)
 
-    results = models.submit_request(query, sort_method)
+    # Now, do the search
+    results = models.search(query, sort_method)
+
     if results is not None and type(results) == list:
         return render_template("search.html", engine_name=ENGINE_NAME, results=results, query=query)
     else:
-        abort(505)
+        # We've done something terribly wrong
+        abort(500)
+
+@app.route('/autocomplete', methods=['GET'])
+def autocomplete():
+    """Attempts to autocomplete the user's searchbar input."""
+    # The index page should have submitted GET request passing this variable.
+    # This variable contains the latest text in the searchbar.
+    qtext = request.args.get("qtext")
+    if qtext is None:
+        # We've done something terribly wrong
+        abort(500)
+
+    # Now, perform the autocompletion. 
+    # This should return a list of strings that we want to suggest to the user.
+    results = models.do_autocompletion(qtext)
+
+    # Return the results back to the index page
+    return jsonify(matching_results=results)

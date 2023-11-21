@@ -3,17 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>{{ engine_name }} Search Engine</title>
+    <title>{{ engine_name }} Search Engine</title>
+
+    <!-- Import our custom stylesheet. -->
     <link rel="stylesheet" href="../static/style.css">
+
+    <!-- Import stylesheet and scripts for JQuery. We'll make use of autocomplete. -->
+    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
+    <!-- Enable autocomplete and callback to our "searchbar" route defined in our flask app. -->
+    <script type="text/javascript">
+        $(function() {
+            $("#searchbar").autocomplete({
+                source:function(request, response) {
+                    $.getJSON("{{url_for('autocomplete')}}",{
+                        qtext: request.term, // "qtext" will be the argument passed to flask
+                    }, function(data) {
+                        response(data.matching_results);
+                    });
+                },
+                minLength: 2
+            });
+        })
+    </script>
 </head>
 <body>
     <div id="container">
         <div id="logo">
              <h1>{{ engine_name }}<br/></h1>
         </div>
+        
+        <!-- Create a new form that submit a GET request to our search route. -->
         <form id="form" action="search" method="GET">
             <div id="form_container">
-                <input name="query" id="searchbar" type="text" placeholder="Type something to search...">
+                <!-- Save the searchbar text into a variable "query" that can be accessed in our search route function. -->
+                <input name="query" id="searchbar" type="text" placeholder="Type something to search..." class="form-control">
                 <input type="submit" value="Search" />
             </div>
             <br>

@@ -69,3 +69,7 @@ html, body {
 input {
     height: 20px;
 }
+
+.ui-autocomplete {
+    text-align: left
+}

@@ -20,3 +20,5 @@ $ pip install -r requirements.txt
 $ python setup.py develop
 $ cyberminer
 ```
+
+Now open a web browser and navigate to _http://localhost:5000_.
