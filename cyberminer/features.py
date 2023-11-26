@@ -1,7 +1,8 @@
-import pubsub
+from pubsub import pub
 import string
 
-event_bus = pubsub.PubSub()
+pub.setList
+
 
 class SearchRequestEvent:
     def __init__(self, query):
