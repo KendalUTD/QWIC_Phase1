@@ -21,20 +21,32 @@ def search():
     Requests to the endpoint are not meant to be called by clients directly. Requests here are made when clients click
     the search button on the homepage. 
     """
-    # The search form should have submitted GET request passing query parameter
+    # The search form should have submitted GET request passing the following query parameters:
+    #     query (str): the string entered into the search bar
+    #     sort_method (str): the sorting method to apply to the results
+    #     nperpage (int): the number of results to show per page
+    #     page (int): optional, the page number, used with nperpage
     query = request.args.get("query", None)
     sort_method = request.args.get("sort_method", models.SortMethod.ALPHABETICALLY)
+    page = request.args.get("page", 1)
     nperpage = request.args.get("nperpage", 100)
+
+    try:
+        # Convert page and nperpage to integers
+        page = int(page)
+        nperpage = int(nperpage)
+    except ValueError:
+        abort(500)
 
     if query is None:
         # We've done something terribly wrong
         abort(500)
 
     # Now, do the search
-    results = models.search(query, sort_method)
+    nresults, npages, results = models.search(query, sort_method, page, nperpage)
 
     if results is not None and type(results) == list:
-        return render_template("search.html", engine_name=ENGINE_NAME, results=results, query=query)
+        return render_template("search.html", engine_name=ENGINE_NAME, results=results, query=query, npages=npages, page=page)
     else:
         # We've done something terribly wrong
         abort(500)

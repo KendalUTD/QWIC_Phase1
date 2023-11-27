@@ -2,13 +2,17 @@ html, body {
     text-align: center;
 }
 
-#container {
+input {
+    height: 20px;
+}
+
+#index-container {
     margin-top: 200px;
     margin-right: auto;
     margin-left: auto;
 }
 
-#logo {
+#index-logo {
     color: red;
     font-style: italic;
     font-size: xx-large;
@@ -16,18 +20,24 @@ html, body {
     margin-bottom: 0px;
 }
 
-#searchbar {
+#index-searchbar {
     width: 25%;
 }
 
-#container_search {
+#search-container {
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: left;
 }
 
-#logo_search {
+#search-results-container {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+}
+
+#search-logo {
     color: red;
     font-style: italic;
     font-size: small;
@@ -36,25 +46,18 @@ html, body {
     margin-right: 25px;
 }
 
-#searchbox_search {
+#search-searchbox {
     text-align: left;
     display: block;
     margin-top: center;
     width: 25%;
 }
 
-.result {
-    text-align: left;
-    display: block;
-    margin-top: center;
-    width: 25%;
-}
-
-#search_header {
+#search-header {
     text-align: left;
 }
 
-#form_options {
+#index-form-options {
     display: flex;
     text-align: center;
     align-items: center;
@@ -62,12 +65,26 @@ html, body {
     font-weight: bold;
 }
 
-#sort_option_container {
+#index-sort-option-container {
     margin-right: 30px;
 }
 
-input {
-    height: 20px;
+#search-page-links-container form,
+#search-page-links-container form div,
+#search-page-links-container p {
+    display: inline;
+}
+
+#search-page-links-container input {
+    display: inline;
+    vertical-align: middle;
+}
+
+.search-result {
+    text-align: left;
+    display: block;
+    margin-top: center;
+    width: 25%;
 }
 
 .ui-autocomplete {

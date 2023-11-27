@@ -5,22 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ engine_name }} Search Engine</title>
     <link rel="stylesheet" href="../static/style.css">
+    <script>
+        // Utility function to maintain the URL search parameters as we navigate across pages.
+        function onSubmitPage(page) {
+            // Get the current search parameters, e.g. query, nperpage, etc.
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Grab the form element
+            var elem = document.getElementById("search-page-link-form");
+
+            for (const entry of urlParams.entries()) {
+                if (entry[0] != "page") {
+                    // Add the entry as a hidden input
+                    var input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = entry[0];
+                    input.value = entry[1];
+                    elem.appendChild(input);
+                }
+            }
+            // Now add the page input
+            var input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "page";
+            input.value = page;
+            elem.appendChild(input);
+
+            // Now that we've added the parameters, submit the HTTP request attached to the form.
+            elem.submit();
+        }
+    </script>
 </head>
 <body>
-    <div id="container_search">
-        <div id="logo_search">
+    <!-- Container for logo and search request. -->
+    <div id="search-container">
+        <div id="search-logo">
             <h1>{{ engine_name }}</h1>
         </div>
         <!-- The "query" variable was initially set in index.html. This redisplays the user's search. -->
-        <input id="searchbox_search" name="title" type="text" value="{{ query }}" readonly>
+        <input id="search-searchbox" name="title" type="text" value="{{ query }}" readonly>
     </div>
+    <!-- Horizontal line. -->
     <hr>
-    <h2 id="search_header">Search results...</h2>
-    <div id="results_container">
+
+    <!-- Display the results. -->
+    <h2 id="search-header">Search results...</h2>
+    <div id="search-results-container">
         {% for res in results %}
-        <a href="{{ res }}" class="result" target="_blank">{{ res }}</a>
+        <a href="{{ res }}" class="search-result" target="_blank">{{ res }}</a>
         <br>
         {% endfor %}
+    </div>
+
+    <!-- Display page navigation. -->
+    <div id="search-page-links-container">
+        {% if npages > 1 %}
+        <p><b>Page:</b></p>
+            {% for i in range(1, npages+1) %}
+                {% if i == page %}
+        <!-- Only display text, not a hyperlink. -->
+        <p>{{ i }}</p>
+                {% else %}
+        <!-- Create a form to call search route with a different page number. -->
+        <form id="search-page-link-form" action="search" method="GET">
+            <a href="javascript:;" onclick="onSubmitPage({{ i }});">{{ i }}</a>
+        </form>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 </body>
 </html>
