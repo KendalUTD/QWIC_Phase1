@@ -1,5 +1,10 @@
 """This module represents the input component of the kwic system."""
 
+import sqlite3
+
+conn = sqlite3.connect('kwicOrg.db')
+cursor = conn.cursor()
+
 class Input(object):
     """Kendal's code for the Input module."""
 
@@ -15,10 +20,13 @@ class Input(object):
         with open(file_address, 'r') as f:
             '''read the first line as url and the rest as lines'''
             text_input_lines = f.readlines()
-        self._storage.set_url(text_input_lines[0])
+        self._storage.set_url(text_input_lines[0].rstrip('/n'))
         text_input = text_input_lines[1]
         lines = text_input.split("$")
         for i, line in enumerate(lines, 1):
             self._storage.set_line(i, line)
+            cursor.execute("INSERT INTO kwic VALUES (?, ?)", (text_input_lines[0], line))
+        conn.commit()
+        conn.close()
 
 #TODO: add a feature to read files from a folder rather than just one file

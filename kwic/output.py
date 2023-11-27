@@ -1,7 +1,11 @@
 """This module represents the output component of the kwic system."""
 
+import sqlite3
 import random
 import time
+
+conn = sqlite3.connect('kwic.db')
+cursor = conn.cursor()
 
 ENDC = '\033[0m'
 
@@ -25,6 +29,10 @@ class Output(object):
         self.color_mover = 0
         self.line_dict = {}
 
+    def setup(self):
+        self.get_output()
+        self._save_to_dB()
+
     def _print_line(self, line):
         line_mod = str(sorted(line.split()))
 
@@ -32,10 +40,6 @@ class Output(object):
         if str(line_mod) not in self.line_dict:
             self.line_dict[line_mod] = COLORS[self.color_mover]
             self.color_mover += 1
-        
-        # x = random.randint(0,len(COLORS)-1)
-
-        # print line with respective color
         print(self.line_dict[line_mod] + line + ENDC)
 
     def _has_noise_word(self, line):
@@ -50,14 +54,18 @@ class Output(object):
         print("\nGetting CS Lines\n")
         for line in self.circle_shifter.get_lines():
             self._print_line(line)
-        time.sleep(5)
+        # time.sleep(5)
         print("\nGetting output...")
         print("\n")
         for line in self.alpha_shifter.get_lines():
-            if self._has_noise_word(line):
+            if self._has_noise_word(line[1]):
                 continue
-            self._print_line(line)
+            self._print_line(line[1])
 
     def _save_to_dB(self):
         '''save the sorted list of shifted lines to db'''
-        #TODO
+        for line in self.alpha_shifter.get_lines():
+            if not self._has_noise_word(line[1]):
+                cursor.execute("INSERT INTO kwic VALUES (?, ?)", (line[0], line[1]))
+        conn.commit()
+        conn.close()
