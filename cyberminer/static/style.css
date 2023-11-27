@@ -1,0 +1,92 @@
+html, body {
+    text-align: center;
+}
+
+input {
+    height: 20px;
+}
+
+#index-container {
+    margin-top: 200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#index-logo {
+    color: red;
+    font-style: italic;
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+#index-searchbar {
+    width: 25%;
+}
+
+#search-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: left;
+}
+
+#search-results-container {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+}
+
+#search-logo {
+    color: red;
+    font-style: italic;
+    font-size: small;
+    float: left;
+    display: block;
+    margin-right: 25px;
+}
+
+#search-searchbox {
+    text-align: left;
+    display: block;
+    margin-top: center;
+    width: 25%;
+}
+
+#search-header {
+    text-align: left;
+}
+
+#index-form-options {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+#index-sort-option-container {
+    margin-right: 30px;
+}
+
+#search-page-links-container form,
+#search-page-links-container form div,
+#search-page-links-container p {
+    display: inline;
+}
+
+#search-page-links-container input {
+    display: inline;
+    vertical-align: middle;
+}
+
+.search-result {
+    text-align: left;
+    display: block;
+    margin-top: center;
+    width: 25%;
+}
+
+.ui-autocomplete {
+    text-align: left
+}
