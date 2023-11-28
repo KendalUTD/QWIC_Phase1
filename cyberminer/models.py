@@ -2,6 +2,7 @@
 
 from enum import Enum
 from math import ceil
+from cyberminer.engine import SearchEngine
 
 URLS = [
     "https://www.facebook.com",
@@ -47,10 +48,14 @@ def search(query, sort_method, page, nperpage):
     Returns:
         List of URLs.
     """
-    nresults = len(URLS)
+    eng = SearchEngine()
+    eng.search(query)
+    results = eng.process_event()
+
+    nresults = len(results)
     npages = ceil(nresults / nperpage)
     temp = (page - 1) * nperpage
-    return len(URLS), npages, URLS[temp:temp + nperpage]
+    return nresults, npages, results[temp:temp + nperpage]
 
 def do_autocompletion(text):
     """Perform the autocompletion.

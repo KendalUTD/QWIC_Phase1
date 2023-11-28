@@ -10,6 +10,7 @@ setup(name="cyberminer",
     entry_points={
         "console_scripts": [
             "cyberminer = cyberminer:main",
+            "kwic = kwic:main"
         ],
     }
 )

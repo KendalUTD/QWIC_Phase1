@@ -6,7 +6,7 @@ from flask import render_template, request, abort, jsonify
 from cyberminer import app
 from cyberminer import models
 
-ENGINE_NAME = "Cyberminer"
+ENGINE_NAME = "Thunder Search Engine"
 
 @app.route("/")
 @app.route("/index")
