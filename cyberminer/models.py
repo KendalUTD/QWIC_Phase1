@@ -4,37 +4,8 @@ from enum import Enum
 from math import ceil
 from cyberminer.engine import SearchEngine
 
-URLS = [
-    "https://www.facebook.com",
-    "https://www.google.com",
-    "https://www.instagram.com",
-    "https://www.google2.com",
-    "https://www.google3.com",
-    "https://www.google4.com",
-    "https://www.google5.com",
-    "https://www.google6.com",
-    "https://www.google7.com",
-    "https://www.google8.com",
-    "https://www.google9.com",
-    "https://www.google10.com",
-    "https://www.google11.com",
-    "https://www.google12.com",
-    "https://www.google13.com"
-]
-
-DB_ENTRIES = [
-    "here is some random text",
-    "here we go",
-    "here is another",
-    "there is another way",
-    "there we go again",
-    "here, there, everywhere"
-]
-
 class SortMethod(Enum):
     ALPHABETICALLY = "some_value"
-    FIXME1 = "fixme"
-    FIXME2 = "fixme"
 
 def search(query, sort_method, page, nperpage):
     """Search the database.
@@ -48,6 +19,7 @@ def search(query, sort_method, page, nperpage):
     Returns:
         List of URLs.
     """
+    print("DEBUG - Doing search...")
     eng = SearchEngine()
     eng.search(query)
     results = eng.process_event()
@@ -55,7 +27,10 @@ def search(query, sort_method, page, nperpage):
     nresults = len(results)
     npages = ceil(nresults / nperpage)
     temp = (page - 1) * nperpage
-    return nresults, npages, results[temp:temp + nperpage]
+    url_results = [x[0] for x in results]
+
+    print("DEBUG - nresults = %d, npages = %d" % (nresults, npages))
+    return nresults, npages, url_results[temp:temp + nperpage]
 
 def do_autocompletion(text):
     """Perform the autocompletion.
@@ -66,4 +41,8 @@ def do_autocompletion(text):
     Returns:
         List of search suggestions.
     """
-    return [x for x in DB_ENTRIES if x[0:len(text)] == text]
+    print("DEBUG - Doing autocompletion...")
+    eng = SearchEngine()
+    eng.search(text)
+    results = eng.perform_autocomplete(text)
+    return [x[1] for x in results]

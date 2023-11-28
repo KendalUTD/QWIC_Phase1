@@ -31,6 +31,8 @@ def search():
     page = request.args.get("page", 1)
     nperpage = request.args.get("nperpage", 100)
 
+    print("DEBUG - New search with parameters: query = %s, page = %s, nperpage = %s" % (query, page, nperpage))
+
     try:
         # Convert page and nperpage to integers
         page = int(page)
@@ -57,6 +59,9 @@ def autocomplete():
     # The index page should have submitted GET request passing this variable.
     # This variable contains the latest text in the searchbar.
     qtext = request.args.get("qtext")
+
+    print("DEBUG - Autocomplete request with query = %s" % qtext)
+
     if qtext is None:
         # We've done something terribly wrong
         abort(500)

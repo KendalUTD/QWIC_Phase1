@@ -80,7 +80,6 @@ class SearchEngine:
         # Loop through the tokens
         searchQ = ""
         continueS = True
-        print(tokens)
         for token in tokens:
             # If the token is AND, OR or NOT, add it to the SQL query as is
             if token in ["AND", "OR", "NOT"]:
@@ -104,15 +103,62 @@ class SearchEngine:
 
         
         if continueS: sql_query += f"WHERE line LIKE '{searchQ[1:]}%' "
-        print(sql_query)
+        print("DEBUG - SQL Query = %s" % sql_query)
+
         # Execute the SQL query and fetch the results
         cursor.execute(sql_query)
         results = cursor.fetchall()
-        results = [x[0] for x in results]
+        results = [x for x in results]
         # Close the connection
         conn.close()
+        results.sort()
+        return results
 
-        print(sql_query)
+    def perform_autocomplete(self, query):
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        parent_directory = os.path.join(current_directory, '..')
+        db_file_path = os.path.join(parent_directory, 'kwic.db')
+
+        # Connect to the database
+        conn = sqlite3.connect(db_file_path)
+
+        # Create a cursor object
+        cursor = conn.cursor()
+
+        # Define the keyword-based search query string
+        # query = "Show me the money AND [Winner OR Loser] NOT Basement"
+
+        # Parse the query string into SQL syntax
+        sql_query = "SELECT DISTINCT * FROM kwic "
+
+        # Split the query by spaces
+        tokens = re.findall(r'\b\w+\b|[^\w\s]', query)
+
+        # Loop through the tokens
+        searchQ = ""
+        continueS = True
+        for token in tokens:
+            # If the token is AND, OR or NOT, add it to the SQL query as is
+            if token in ["AND", "OR", "NOT"]:
+                continue
+            # If the token is a keyword, add it to the SQL query with LIKE operator
+            elif token.isalpha():
+                searchQ += " " + token
+                continueS = True
+            # If the token is a bracket, remove it and add parentheses to the SQL query
+            elif token in ["[", "]"]:
+                continue
+                continueS = False
+        
+        if continueS: sql_query += f"WHERE line LIKE '{searchQ[1:]}%' "
+        print("DEBUG - SQL Query = %s" % sql_query)
+
+        # Execute the SQL query and fetch the results
+        cursor.execute(sql_query)
+        results = cursor.fetchall()
+        results = [x for x in results]
+        # Close the connection
+        conn.close()
         results.sort()
         return results
 

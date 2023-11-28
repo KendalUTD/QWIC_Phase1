@@ -9,8 +9,7 @@ setup(name="cyberminer",
     packages=["cyberminer", "kwic"],
     entry_points={
         "console_scripts": [
-            "cyberminer = cyberminer:main",
-            "kwic = kwic:main"
+            "cyberminer = cyberminer:main"
         ],
     }
 )

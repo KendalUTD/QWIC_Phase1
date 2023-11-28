@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ engine_name }} Search Engine</title>
+    <title>{{ engine_name }}</title>
 
     <!-- Import our custom stylesheet. -->
     <link rel="stylesheet" href="../static/style.css">
@@ -16,7 +16,7 @@
     <!-- Enable autocomplete and callback to our "searchbar" route defined in our flask app. -->
     <script type="text/javascript">
         $(function() {
-            $("#searchbar").autocomplete({
+            $("#index-searchbar").autocomplete({
                 source:function(request, response) {
                     $.getJSON("{{url_for('autocomplete')}}",{
                         // this can be retrieved in flask via request.args.get('qtext')
@@ -37,10 +37,10 @@
         </div>
         
         <!-- Create a new form that submits a GET request to our search route. -->
-        <form id="index-form" action="search" method="GET">
+        <form id="index-form" action="search" method="GET" autocomplete="off">
             <div id="index-form-container">
                 <!-- Save the searchbar text into a variable "query" that can be accessed in our search route function. -->
-                <input name="query" id="index-searchbar" type="text" placeholder="Type something to search..." class="form-control">
+                <input name="query" id="index-searchbar" type="text" placeholder="Type something to search..." class="form-control" autocomplete="off">
                 <input type="submit" value="Search" />
             </div>
             <br>
